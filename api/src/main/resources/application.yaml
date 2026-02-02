@@ -1,3 +1,24 @@
+server:
+  port: ${APP_PORT}
 spring:
   application:
-    name: bookstore
+    name: ${APP_NAME}
+  liquibase:
+    enabled: ${LIQUIBASE_ENABLED}
+    changeLog: ${LIQUIBASE_CHANGELOG_FILE}
+    drop-first: ${LIQUIBASE_DROP_FIRST}
+    parameters:
+      charlength: ${LIQUIBASE_CHARLENGTH}
+  jpa:
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO}
+    show-sql: ${JPA_SHOW_SQL}
+    database-platform: ${JPA_DATABASE_PLATFORM}
+  datasource:
+    username: ${DATABASESOURCE_USERNAME}
+    password: ${DATABASESOURCE_PASSWORD}
+    driver-class: ${DATABASESOURCE_DRIVERCLASS}
+    url: ${DATABASESOURCE_URL}
+  jackson:
+    visibility:
+      field: any
