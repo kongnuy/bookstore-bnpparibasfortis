@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+   
+  <changeSet id="20260202-3" author="Victorien KONGNUY">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="carts" remarks="This table is used to save carts">
+      <column name="ID" type="BIGSERIAL" autoIncrement="true" remarks="The auto increment Id">
+        <constraints  primaryKey="true" primaryKeyName="PK_CARTS_ID" nullable="false" />
+      </column>
+      <column name="UUID" type="VARCHAR(${charlength})" remarks="The cart's uuid in this database">  
+        <constraints nullable="false" unique="true" uniqueConstraintName="UQ_CARTS_UUID" notNullConstraintName="NOT_NULL_CARTS_UUID" />
+      </column>
+       <column name="FROZEN" type="BOOLEAN" remarks="Is this cart open for edits">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_CART_FROZEN" />
+      </column>
+      <column name="CREATED_AT" type="TIMESTAMP" remarks="The cart'screation date">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_CART_CREATED_AT" />
+      </column>
+      <column name="UPDATED_AT" type="TIMESTAMP" remarks="The cart's last update" />
+      <column name="ROW_INDEX" type="TEXT" remarks="Index of this row" />
+      <column name="ACCOUNT_ID" type="BIGINT" remarks="The account id for this cart">
+        <constraints  
+          notNullConstraintName="NOT_NULL_CART_ACCOUNT_ID" 
+          nullable="false" 
+          foreignKeyName="FK_CART_ACCOUNT_ID" 
+          referencedTableName="accounts" 
+          referencedColumnNames="ID" 
+        />
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

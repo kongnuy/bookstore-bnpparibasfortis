@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+   
+  <changeSet id="20260202-1" author="Victorien KONGNUY">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="account_addresses" remarks="This table is used to save account addresses">
+      <column name="ID" type="BIGSERIAL" autoIncrement="true" remarks="The auto increment Id">
+        <constraints  primaryKey="true" primaryKeyName="PK_ACCOUNT_ADDRESES_ID" nullable="false" />
+      </column>
+      <column name="UUID" type="VARCHAR(${charlength})" remarks="The account address's uuid in this database">  
+        <constraints nullable="false" unique="true" uniqueConstraintName="UQ_ACCOUNT_ADDRESES_UUID" notNullConstraintName="NOT_NULL_ACCOUNT_ADDRESES_UUID" />
+      </column>
+      <column name="STREET_NUMBER" type="INT" remarks="The account address's street number">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNT_ADDRESS_STREET_NUMBER" />
+      </column>
+      <column name="STREET_EXTENSION" type="VARCHAR(${charlength})" remarks="The account address's status" />
+      <column name="STREET_NAME" type="VARCHAR(${charlength})" remarks="The account address's street name">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNT_ADDRESS_STREET_NAME" />
+      </column>
+      <column name="POSTAL_CODE" type="VARCHAR(${charlength})" remarks="The account address's postal code">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNT_ADDRESS_POSTAL_CODE" />
+      </column>
+      <column name="CITY" type="VARCHAR(${charlength})" remarks="The account address's city">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNT_ADDRESS_CITY" />
+      </column>
+      <column name="REGION" type="VARCHAR(${charlength})" remarks="The account address's region" />
+      <column name="COUNTRY" type="VARCHAR(${charlength})" remarks="The account address's country">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNT_ADDRESS_COUNTRY" />
+      </column>
+      <column name="CREATED_AT" type="TIMESTAMP" remarks="The account address'screation date">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNT_ADDRESS_CREATED_AT" />
+      </column>
+      <column name="UPDATED_AT" type="TIMESTAMP" remarks="The account address's last update" />
+      <column name="ROW_INDEX" type="TEXT" remarks="Index of this row" />
+      <column name="ACCOUNT_ID" type="BIGINT" remarks="The account id for this address">
+        <constraints  
+          notNullConstraintName="NOT_NULL_ACCOUNT_ADDRESS_ACCOUNT_ID" 
+          nullable="false" 
+          foreignKeyName="FK_ACCOUNT_ADDRESS_ACCOUNT_ID" 
+          referencedTableName="accounts" 
+          referencedColumnNames="ID" 
+        />
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

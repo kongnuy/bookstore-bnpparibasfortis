@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+   
+  <changeSet id="20260202-5" author="Victorien KONGNUY">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="orders" remarks="This table is used to save orders">
+      <column name="ID" type="BIGSERIAL" autoIncrement="true" remarks="The auto increment Id">
+        <constraints  primaryKey="true" primaryKeyName="PK_ORDERS_ID" nullable="false" />
+      </column>
+      <column name="UUID" type="VARCHAR(${charlength})" remarks="The order's uuid in this database">  
+        <constraints nullable="false" unique="true" uniqueConstraintName="UQ_ORDERS_UUID" notNullConstraintName="NOT_NULL_ORDERS_UUID" />
+      </column>
+      <column name="STATUS" type="ENUM('PAID','WAITING_PAYMENT','PROCESSING','DELIVERY_IN_PROGRESS','DONE','CANCELLED')" remarks="The order's status">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ORDERS_STATUS" />
+      </column>
+      <column name="CREATED_AT" type="TIMESTAMP" remarks="The order'screation date">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ORDER_CREATED_AT" />
+      </column>
+      <column name="UPDATED_AT" type="TIMESTAMP" remarks="The order's last update" />
+      <column name="ROW_INDEX" type="TEXT" remarks="Index of this row" />
+      <column name="CART_ID" type="BIGINT" remarks="The cart id for this order">
+        <constraints  
+          notNullConstraintName="NOT_NULL_ORDER_CART_ID" 
+          nullable="false" 
+          foreignKeyName="FK_ORDER_CART_ID" 
+          referencedTableName="carts" 
+          referencedColumnNames="ID" 
+        />
+      </column>
+      <column name="DELIVERY_ADDRESS_ID" type="BIGINT" remarks="The delivery address id for this order">
+        <constraints  
+          notNullConstraintName="NOT_NULL_ORDER_DELIVERY_ADDRESS_ID" 
+          nullable="false" 
+          foreignKeyName="FK_ORDER_DELIVERY_ADDRESS_ID" 
+          referencedTableName="account_addresses" 
+          referencedColumnNames="ID" 
+        />
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

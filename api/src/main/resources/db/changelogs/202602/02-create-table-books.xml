@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+   
+  <changeSet id="20260202-2" author="Victorien KONGNUY">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="books" remarks="This table is used to save books">
+      <column name="ID" type="BIGSERIAL" autoIncrement="true" remarks="The auto increment Id">
+        <constraints  primaryKey="true" primaryKeyName="PK_BOOKS_ID" nullable="false" />
+      </column>
+      <column name="UUID" type="VARCHAR(${charlength})" remarks="The book's uuid in this database">  
+        <constraints nullable="false" unique="true" uniqueConstraintName="UQ_BOOKS_UUID" notNullConstraintName="NOT_NULL_BOOKS_UUID" />
+      </column>
+      <column name="TITLE" type="VARCHAR(${charlength})" remarks="The book's title">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_BOOK_TITLE" />
+      </column>
+      <column name="AUTHORS" type="TEXT" remarks="The book's authors (comma seperated)">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_BOOK_AUTHOR" />
+      </column>
+      <column name="SUMMARY" type="TEXT" remarks="The book's summary">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_BOOK_SUMMARY" />
+      </column>
+      <column name="PRICE" type="DECIMAL" remarks="The book's price">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_BOOK_PRICE" />
+      </column>
+      <column name="COVER" type="TEXT" remarks="The book's cover" />
+      <column name="STATUS" type="ENUM('DRAFT','PUBLISHED','DELETED','UNPUBLISHED')" remarks="The book's status">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_BOOK_STATUS" />
+      </column>
+      <column name="CREATED_AT" type="TIMESTAMP" remarks="The book'screation date">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_BOOK_CREATED_AT" />
+      </column>
+      <column name="UPDATED_AT" type="TIMESTAMP" remarks="The book's last update" />
+      <column name="ROW_INDEX" type="TEXT" remarks="Index of this row" />
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

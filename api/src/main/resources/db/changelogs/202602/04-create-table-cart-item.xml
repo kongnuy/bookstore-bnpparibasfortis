@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+   
+  <changeSet id="20260202-4" author="Victorien KONGNUY">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="cart_items" remarks="This table is used to save cart_items">
+      <column name="ID" type="BIGSERIAL" autoIncrement="true" remarks="The auto increment Id">
+        <constraints  primaryKey="true" primaryKeyName="PK_CART_ITEMS_ID" nullable="false" />
+      </column>
+      <column name="UUID" type="VARCHAR(${charlength})" remarks="The cart_item's uuid in this database">  
+        <constraints nullable="false" unique="true" uniqueConstraintName="UQ_CART_ITEMS_UUID" notNullConstraintName="NOT_NULL_CART_ITEMS_UUID" />
+      </column>
+       <column name="QUANTITY" type="INT" remarks="Quantity of book for this item">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_CART_ITEM_QUANTITY" />
+      </column>
+      <column name="CREATED_AT" type="TIMESTAMP" remarks="The cart_item'screation date">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_CART_ITEM_CREATED_AT" />
+      </column>
+      <column name="UPDATED_AT" type="TIMESTAMP" remarks="The cart_item's last update" />
+      <column name="ROW_INDEX" type="TEXT" remarks="Index of this row" />
+      <column name="CART_ID" type="BIGINT" remarks="The cart id for this cart_item">
+        <constraints  
+          notNullConstraintName="NOT_NULL_CART_ITEM_CART_ID" 
+          nullable="false" 
+          foreignKeyName="FK_CART_ITEM_CART_ID" 
+          referencedTableName="carts" 
+          referencedColumnNames="ID" 
+        />
+      </column>
+      <column name="BOOK_ID" type="BIGINT" remarks="The book id for this cart_item">
+        <constraints  
+          notNullConstraintName="NOT_NULL_CART_ITEM_BOOK_ID" 
+          nullable="false" 
+          foreignKeyName="FK_CART_ITEM_BOOK_ID" 
+          referencedTableName="books" 
+          referencedColumnNames="ID" 
+        />
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

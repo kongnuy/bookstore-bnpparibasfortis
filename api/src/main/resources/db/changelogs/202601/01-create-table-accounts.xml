@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+   
+  <changeSet id="20260131-1" author="Victorien KONGNUY">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="accounts" remarks="This table is used to save accounts">
+      <column name="ID" type="BIGSERIAL" autoIncrement="true" remarks="The auto increment Id">
+        <constraints  primaryKey="true" primaryKeyName="PK_ACCOUNTS_ID" nullable="false" />
+      </column>
+      <column name="UUID" type="VARCHAR(36)" remarks="The account's uuid in this database">  
+        <constraints nullable="false" unique="true" uniqueConstraintName="UQ_ACCOUNTS_UUID" notNullConstraintName="NOT_NULL_ACCOUNTS_UUID" />
+      </column>
+      <column name="FIRST_NAME" type="VARCHAR(${charlength})" remarks="The account's firstname">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_FIRST_NAME" />
+      </column>
+      <column name="LAST_NAME" type="VARCHAR(${charlength})" remarks="The account's lastname" />
+      <column name="EMAIL" type="VARCHAR(${charlength})" remarks="The account's email">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_EMAIL" unique="true" uniqueConstraintName="UQ_ACCOUNTS_EMAIL"/>
+      </column>
+      <column name="PHONE_NUMBER" type="VARCHAR(${charlength})" remarks="The account's phoneNumber">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_PHONE_NUMBER" unique="true" uniqueConstraintName="UQ_ACCOUNTS_PHONE_NUMBER"/>
+      </column>
+       <column name="EMAIL_VALIDATED" type="BOOLEAN" remarks="Is the account's email validated">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_EMAIL_VALIDATED" />
+      </column>
+      <column name="PHONE_NUMBER_VALIDATED" type="BOOLEAN" remarks="Is the account's phoneNumber validated">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_PHONE_NUMBER_VALIDATED" />
+      </column>
+      <column name="USER_NAME" type="VARCHAR(${charlength})" remarks="The account's username">  
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_USER_NAME" unique="true" uniqueConstraintName="UQ_ACCOUNTS_USER_NAME"/>
+      </column>
+      <column name="PASSWORD" type="TEXT" remarks="The account's password">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_PASSWORD" />
+      </column>
+      <column name="BIRTH_DATE" type="DATE" remarks="The account's birthdate">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_BIRTH_DATE" />
+      </column>
+      <column name="STATUS" type="ENUM('ACTIVE','INACTIVE','DELETED','DELETE_REQUESTED','READY_TO_DELETE','SUSPENDED','FROZEN')" remarks="The account's status">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_STATUS" />
+      </column>
+      <column name="ROLE" type="VARCHAR(${charlength})" remarks="The account's role">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_ROLE" />
+      </column>
+      <column name="CREATED_AT" type="TIMESTAMP" remarks="The account's creation date">
+        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_CREATED_AT" />
+      </column>
+      <column name="UPDATED_AT" type="TIMESTAMP" remarks="The account's last update" />
+      <column name="ROW_INDEX" type="TEXT" remarks="Index of this row" />
+    </createTable>
+  </changeSet>
+</databaseChangeLog>
