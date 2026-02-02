@@ -8,5 +8,6 @@
 
 - API-001 - Configure database and liquibase migration tool
 - API-002 - Create database migrations
+- API-003 - Create entities and repositories for each table in the database
 
 ## UI

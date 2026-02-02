@@ -46,7 +46,7 @@
       <column name="STATUS" type="ENUM('ACTIVE','INACTIVE','DELETED','DELETE_REQUESTED','READY_TO_DELETE','SUSPENDED','FROZEN')" remarks="The account's status">
         <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_STATUS" />
       </column>
-      <column name="ROLE" type="VARCHAR(${charlength})" remarks="The account's role">
+      <column name="ROLE" type="ENUM('USER','ADMIN')" remarks="The account's role">
         <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_ROLE" />
       </column>
       <column name="CREATED_AT" type="TIMESTAMP" remarks="The account's creation date">
