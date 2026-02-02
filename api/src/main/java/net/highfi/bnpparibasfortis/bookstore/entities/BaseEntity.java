@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.UUID;
 
 @Data
 @MappedSuperclass
@@ -31,7 +33,7 @@ public abstract class BaseEntity {
   @Column(name = "ROW_INDEX", columnDefinition = "text")
   protected String rowIndex;
 
-  public void buildRowIndex() {
+  protected void buildRowIndex() {
     if (id != null) {
       this.appendToRowIndex(String.valueOf(id));
     }
@@ -40,7 +42,16 @@ public abstract class BaseEntity {
     this.appendToRowIndex(DateUtils.format(updatedAt));
   }
 
-  public void appendToRowIndex(String field) {
+  protected void setDefaults() {
+    if (id == null) {
+      this.setUuid(UUID.randomUUID().toString());
+      this.setCreatedAt(Timestamp.from(Instant.now()));
+    } else {
+      this.setUpdatedAt(Timestamp.from(Instant.now()));
+    }
+  }
+
+  protected void appendToRowIndex(String field) {
     if (field != null && !field.isEmpty()) {
       if (this.rowIndex != null && !this.rowIndex.isEmpty()) {
         this.rowIndex += "|";

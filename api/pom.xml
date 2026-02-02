@@ -28,6 +28,8 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+    <mapstruct.version>1.6.0.Beta1</mapstruct.version>
+    <jwt.version>0.13.0</jwt.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -67,6 +69,29 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>${jwt.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-impl</artifactId>
+      <version>${jwt.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-jackson</artifactId>
+      <version>${jwt.version}</version>
+      <scope>runtime</scope>
+    </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator-test</artifactId>
@@ -105,7 +130,34 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</path>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
+            </path>
 					</annotationProcessorPaths>
+          <!-- due to problem in maven-compiler-plugin, for verbose mode add showWarnings -->
+          <showWarnings>true</showWarnings>
+          <compilerArgs>
+            <arg>
+              -Amapstruct.suppressGeneratorTimestamp=false
+            </arg>
+            <arg>
+              -Amapstruct.suppressGeneratorVersionInfoComment=false
+            </arg>
+            <arg>
+              -Amapstruct.verbose=true
+            </arg>
+            <arg>
+              -Amapstruct.defaultComponentModel=spring
+            </arg>
+            <arg>
+              -Amapstruct.defaultInjectionStrategy=constructor
+            </arg>
+            <arg>
+              -Amapstruct.unmappedTargetPolicy=IGNORE
+            </arg>
+          </compilerArgs>
 				</configuration>
 			</plugin>
 			<plugin>

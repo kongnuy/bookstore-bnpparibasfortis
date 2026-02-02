@@ -22,3 +22,7 @@ spring:
   jackson:
     visibility:
       field: any
+security:
+  jwt:
+    secret-key: ${JWT_SECRET}
+    expiration-time: ${JWT_EXPIRATION_TIME} # 24h in millisecond
