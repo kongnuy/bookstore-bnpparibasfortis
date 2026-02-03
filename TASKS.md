@@ -19,3 +19,5 @@
 - API-011 - Bug fixes and swagger integration
 
 ## UI
+
+- UI-001 - start the integration of the ui with backend api
