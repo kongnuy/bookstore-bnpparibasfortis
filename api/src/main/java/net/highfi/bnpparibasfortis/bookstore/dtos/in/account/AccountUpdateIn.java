@@ -10,4 +10,6 @@ public class AccountUpdateIn {
   private String lastName;
   private String username;
   private LocalDate birthDate;
+  private String phoneNumber;
+  private String email;
 }

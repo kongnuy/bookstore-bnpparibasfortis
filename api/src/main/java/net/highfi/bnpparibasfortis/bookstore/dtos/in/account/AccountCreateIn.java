@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class AccountCreateIn extends AccountUpdateIn {
-  private String email;
   private String password;
-  private String phoneNumber;
+
 }
