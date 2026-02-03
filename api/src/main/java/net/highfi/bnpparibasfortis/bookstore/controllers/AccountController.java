@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import net.highfi.bnpparibasfortis.bookstore.constants.Constants;
+import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountAddressCreateIn;
+import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountAddressUpdateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountCreateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountUpdateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.shared.BaseSearchParams;
@@ -55,5 +57,21 @@ public class AccountController {
   @DeleteMapping(path = "/{identifier}", produces = MediaType.APPLICATION_JSON_VALUE)
   public GenericApiResponse<?> delete(@PathVariable(name = "identifier") String identifier) {
     return new GenericApiResponse<>(accountService.delete(identifier));
+  }
+
+  @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+  public GenericApiResponse<?> createAddress(@Validated @RequestBody AccountAddressCreateIn accountAddressCreateIn) {
+    return new GenericApiResponse<>(accountService.createAddress(accountAddressCreateIn));
+  }
+
+  @PutMapping(path = "/addresses/{identifier}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public GenericApiResponse<?> updateAddress(@PathVariable(name = "identifier") String identifier,
+      @Validated @RequestBody AccountAddressUpdateIn accountAddressUpdateIn) {
+    return new GenericApiResponse<>(accountService.updateAddress(identifier, accountAddressUpdateIn));
+  }
+
+  @DeleteMapping(path = "/addresses/{identifier}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public GenericApiResponse<?> deleteAddress(@PathVariable(name = "identifier") String identifier) {
+    return new GenericApiResponse<>(accountService.deleteAddress(identifier));
   }
 }

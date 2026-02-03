@@ -12,12 +12,15 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.stereotype.Service;
 
+import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountAddressCreateIn;
+import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountAddressUpdateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountCreateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountUpdateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.out.account.AccountFullOut;
 import net.highfi.bnpparibasfortis.bookstore.dtos.out.account.AccountLoginOut;
 import net.highfi.bnpparibasfortis.bookstore.dtos.out.account.AccountStandardOut;
 import net.highfi.bnpparibasfortis.bookstore.entities.Account;
+import net.highfi.bnpparibasfortis.bookstore.entities.AccountAddress;
 import net.highfi.bnpparibasfortis.bookstore.enums.AccountRole;
 import net.highfi.bnpparibasfortis.bookstore.enums.AccountStatus;
 
@@ -30,6 +33,11 @@ public interface IAccountMapper {
   Account fromAccountCreateIn(AccountCreateIn accountCreateIn);
 
   Account fromAccountUpdateIn(@MappingTarget Account account, AccountUpdateIn accountUpdateIn);
+
+  AccountAddress fromAccountAddressCreateIn(AccountAddressCreateIn accountAddressCreateIn);
+
+  AccountAddress fromAccountAddressUpdateIn(@MappingTarget AccountAddress account,
+      AccountAddressUpdateIn accountAddressUpdateIn);
 
   @AfterMapping
   default void fromAccountCreateIn_AfterMapping(@MappingTarget Account account) {

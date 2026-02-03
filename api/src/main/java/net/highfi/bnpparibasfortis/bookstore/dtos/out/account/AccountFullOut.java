@@ -1,6 +1,7 @@
 package net.highfi.bnpparibasfortis.bookstore.dtos.out.account;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 import net.highfi.bnpparibasfortis.bookstore.enums.AccountStatus;
 import lombok.AllArgsConstructor;
@@ -19,4 +20,6 @@ public class AccountFullOut extends AccountStandardOut {
   protected boolean phoneNumberValidated;
   protected AccountStatus status;
   protected Timestamp updatedAt;
+
+  protected Set<AccountAddressOut> addresses;
 }

@@ -2,6 +2,8 @@ package net.highfi.bnpparibasfortis.bookstore.services.interfaces;
 
 import java.util.List;
 
+import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountAddressCreateIn;
+import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountAddressUpdateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountCreateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountUpdateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.shared.BaseSearchParams;
@@ -19,11 +21,17 @@ public interface IAccountService {
 
   public AccountFullOut update(String uuid, AccountUpdateIn accountUpdateIn);
 
+  public AccountFullOut createAddress(AccountAddressCreateIn accountAddressCreateIn);
+
+  public AccountFullOut updateAddress(String uuidAddress, AccountAddressUpdateIn accountAddressUpdateIn);
+
   public Account loadByIdentifier(String identifier);
 
   public Account loadByIdentifier(String identifier, boolean orElseThrow);
 
   public boolean delete(String identifier);
+
+  public boolean deleteAddress(String addressIdentifier);
 
   public AccountFullOut findOne(String identifier);
 }
