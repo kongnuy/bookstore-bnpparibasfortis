@@ -19,7 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 
 @RestController
-@RequestMapping(Constants.API_ACCOUNT_PREFIX)
+@RequestMapping(Constants.API_BOOK_PREFIX)
 public class BookController {
 
   private final IBookService bookService;

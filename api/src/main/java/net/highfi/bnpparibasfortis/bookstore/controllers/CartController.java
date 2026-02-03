@@ -17,7 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 
 @RestController
-@RequestMapping(Constants.API_ACCOUNT_PREFIX)
+@RequestMapping(Constants.API_CART_PREFIX)
 public class CartController {
 
   private final ICartService cartService;

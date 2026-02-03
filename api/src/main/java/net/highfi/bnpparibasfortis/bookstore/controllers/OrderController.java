@@ -21,7 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 
 @RestController
-@RequestMapping(Constants.API_ACCOUNT_PREFIX)
+@RequestMapping(Constants.API_ORDER_PREFIX)
 public class OrderController {
 
   private final IOrderService orderService;

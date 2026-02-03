@@ -59,7 +59,7 @@ public class AccountController {
     return new GenericApiResponse<>(accountService.delete(identifier));
   }
 
-  @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping(path = "/addresses", produces = MediaType.APPLICATION_JSON_VALUE)
   public GenericApiResponse<?> createAddress(@Validated @RequestBody AccountAddressCreateIn accountAddressCreateIn) {
     return new GenericApiResponse<>(accountService.createAddress(accountAddressCreateIn));
   }

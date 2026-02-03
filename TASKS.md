@@ -12,5 +12,9 @@
 - API-004 - Allow users to create an account and connect to the platform
 - API-005 - Implement crud operations on accounts
 - API-006 - Implement crud operations on books
+- API-007 - Implement crud operations on addresses
+- API-008 - Implement crud operations on carts
+- API-009 - Implement crud operations on orders
+- API-010 - Configure swagger for api documentation
 
 ## UI

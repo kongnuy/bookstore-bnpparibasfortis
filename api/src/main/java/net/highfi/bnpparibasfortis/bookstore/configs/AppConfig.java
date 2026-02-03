@@ -22,7 +22,7 @@ public class AppConfig {
   @Bean
   UserDetailsService userDetailsService() {
     return username -> accountRepository
-        .findByUuidOrUserNameOrEmailOrPhoneNumber(username, username, username, username)
+        .findByUuidOrUsernameOrEmailOrPhoneNumber(username, username, username, username)
         .orElseThrow(() -> new UsernameNotFoundException("Account not found"));
   }
 

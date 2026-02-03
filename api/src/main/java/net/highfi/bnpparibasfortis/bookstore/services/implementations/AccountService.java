@@ -75,7 +75,7 @@ public class AccountService implements IAccountService {
   @Override
   public Account loadByIdentifier(String identifier, boolean orElseThrow) {
     var account = accountRepository
-        .findByUuidOrUserNameOrEmailOrPhoneNumber(identifier, identifier, identifier, identifier).orElse(null);
+        .findByUuidOrUsernameOrEmailOrPhoneNumber(identifier, identifier, identifier, identifier).orElse(null);
     if (orElseThrow && account == null) {
       throw new EntityNotFoundException(String.format(ApiErrorMessages.ACCOUNT_NOT_FOUND, identifier));
     }

@@ -58,6 +58,6 @@ class CustomizedAccountRepositoryImpl implements CustomizedAccountRepository {
 @Repository("accountRepository")
 public interface AccountRepository extends JpaRepository<Account, Long>, CustomizedAccountRepository {
 
-  Optional<Account> findByUuidOrUserNameOrEmailOrPhoneNumber(String uuid, String userName, String email,
+  Optional<Account> findByUuidOrUsernameOrEmailOrPhoneNumber(String uuid, String username, String email,
       String phoneNumber);
 }
