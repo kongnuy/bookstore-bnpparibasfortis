@@ -11,5 +11,6 @@
 - API-003 - Create entities and repositories for each table in the database
 - API-004 - Allow users to create an account and connect to the platform
 - API-005 - Implement crud operations on accounts
+- API-006 - Implement crud operations on books
 
 ## UI
