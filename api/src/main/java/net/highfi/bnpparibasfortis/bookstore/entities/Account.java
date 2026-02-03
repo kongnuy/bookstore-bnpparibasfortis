@@ -27,6 +27,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 
 @Data
@@ -70,13 +71,13 @@ public class Account extends BaseEntity implements UserDetails {
   @Column(name = "PASSWORD", nullable = false, columnDefinition = "text")
   private String password;
 
-  @Column(name = "BIRTH_DATE", nullable = false)
+  @Column(name = "BIRTH_DATE")
   private LocalDate birthDate;
 
-  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
   private Set<AccountAddress> addresses;
 
-  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
   private Set<Cart> carts;
 
   @PrePersist

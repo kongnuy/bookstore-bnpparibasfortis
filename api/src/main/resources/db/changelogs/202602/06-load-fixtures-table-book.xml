@@ -9,11 +9,20 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
    
-    <include file="01-create-table-account-addresses.xml" relativeToChangelogFile="true"/>
-    <include file="02-create-table-books.xml" relativeToChangelogFile="true"/>
-    <include file="03-create-table-cart.xml" relativeToChangelogFile="true" />
-    <include file="04-create-table-cart-item.xml" relativeToChangelogFile="true" />
-    <include file="05-create-table-order.xml" relativeToChangelogFile="true" />
-    <include file="06-load-fixtures-table-book.xml" relativeToChangelogFile="true" />
-    
+  <changeSet id="20260131-3" author="Victorien KONGNUY">
+    <validCheckSum>ANY</validCheckSum>
+    <loadData 
+      separator=";" 
+      relativeToChangelogFile="false" 
+      encoding="UTF-8" 
+      file="db/data/books.csv" 
+      tableName="books"
+      usePreparedStatements="true"
+    >
+      <column header="UUID" name="UUID" type="VARCHAR"/>
+      <column header="PASSWORD" name="PASSWORD" type="VARCHAR"/>
+      <column header="STATUS" name="STATUS" type="VARCHAR"/>
+      <column header="ROW_INDEX" name="ROW_INDEX" type="VARCHAR"/>
+    </loadData>
+  </changeSet>
 </databaseChangeLog>

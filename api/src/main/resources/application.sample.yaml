@@ -1,0 +1,33 @@
+debug: true
+server:
+  port: 8096
+spring:
+  application:
+    name: bookstore
+  liquibase:
+    enabled: true
+    changeLog: "classpath:/db/master.xml"
+    drop-first: false
+    parameters:
+      charlength: 255
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+  datasource:
+    username: fakeDbUser
+    password: fakeDbPassword
+    driver-class: com.mysql.cj.jdbc.Driver
+    url: fakeDbUrl
+  jackson:
+    visibility:
+      field: any
+security:
+  jwt:
+    secret-key: #!ChangeMe!#
+    expiration-time: 86400000 # 24h in millisecond
+logging:
+  level:
+    "org.springframework.boot.autoconfigure": WARN
+    "org.springframework.security": TRACE

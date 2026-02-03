@@ -28,6 +28,7 @@ public class BookController {
     this.bookService = bookService;
   }
 
+  @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
   public GenericApiResponse<?> findAll(
       @RequestParam(required = false) Integer limit,
       @RequestParam(required = false) Integer offset,

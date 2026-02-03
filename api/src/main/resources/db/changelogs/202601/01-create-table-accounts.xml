@@ -40,9 +40,7 @@
       <column name="PASSWORD" type="TEXT" remarks="The account's password">
         <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_PASSWORD" />
       </column>
-      <column name="BIRTH_DATE" type="DATE" remarks="The account's birthdate">
-        <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_BIRTH_DATE" />
-      </column>
+      <column name="BIRTH_DATE" type="DATE" remarks="The account's birthdate" />
       <column name="STATUS" type="ENUM('ACTIVE','INACTIVE','DELETED','DELETE_REQUESTED','READY_TO_DELETE','SUSPENDED','FROZEN')" remarks="The account's status">
         <constraints nullable="false" notNullConstraintName="NOT_NULL_ACCOUNTS_STATUS" />
       </column>

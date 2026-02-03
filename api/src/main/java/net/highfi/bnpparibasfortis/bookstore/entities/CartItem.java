@@ -16,7 +16,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "carts")
+@Table(name = "cart_items")
 @EqualsAndHashCode(callSuper = true)
 public class CartItem extends BaseEntity {
 

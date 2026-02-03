@@ -16,5 +16,6 @@
 - API-008 - Implement crud operations on carts
 - API-009 - Implement crud operations on orders
 - API-010 - Configure swagger for api documentation
+- API-011 - Bug fixes and swagger integration
 
 ## UI

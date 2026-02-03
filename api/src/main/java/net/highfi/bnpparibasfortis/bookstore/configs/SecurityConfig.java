@@ -1,10 +1,10 @@
 package net.highfi.bnpparibasfortis.bookstore.configs;
 
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -32,9 +32,11 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.csrf(AbstractHttpConfigurer::disable)
+    http.cors(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests((authorize) -> authorize
             .requestMatchers("/api/auth/login", "/api/auth/register", "/swagger-ui/**", "/v3/api-docs/**", "/error")
+            .permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/books")
             .permitAll()
             .anyRequest().authenticated())
         .sessionManagement(
@@ -46,17 +48,13 @@ public class SecurityConfig {
   }
 
   @Bean
-  CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-
-    configuration.setAllowedOrigins(List.of("http://localhost:8005"));
-    configuration.setAllowedMethods(List.of("GET", "POST"));
-    configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-
+  public CorsConfigurationSource corsConfigurationSource() {
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-    source.registerCorsConfiguration("/**", configuration);
-
+    CorsConfiguration config = new CorsConfiguration();
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
+    config.addAllowedOrigin("*");
+    source.registerCorsConfiguration("/**", config);
     return source;
   }
 }

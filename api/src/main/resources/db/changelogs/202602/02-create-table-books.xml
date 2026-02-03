@@ -27,7 +27,7 @@
       <column name="SUMMARY" type="TEXT" remarks="The book's summary">
         <constraints nullable="false" notNullConstraintName="NOT_NULL_BOOK_SUMMARY" />
       </column>
-      <column name="PRICE" type="DECIMAL" remarks="The book's price">
+      <column name="PRICE" type="DECIMAL(10,2)" remarks="The book's price">
         <constraints nullable="false" notNullConstraintName="NOT_NULL_BOOK_PRICE" />
       </column>
       <column name="COVER" type="TEXT" remarks="The book's cover" />

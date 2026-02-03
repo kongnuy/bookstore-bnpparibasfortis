@@ -21,7 +21,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "carts")
+@Table(name = "orders")
 @EqualsAndHashCode(callSuper = true)
 public class Order extends BaseEntity {
 

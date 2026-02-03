@@ -4,6 +4,7 @@ import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountCreateIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.in.account.AccountLoginIn;
 import net.highfi.bnpparibasfortis.bookstore.dtos.out.account.AccountFullOut;
 import net.highfi.bnpparibasfortis.bookstore.dtos.out.account.AccountLoginOut;
+import net.highfi.bnpparibasfortis.bookstore.entities.Account;
 import net.highfi.bnpparibasfortis.bookstore.mappers.IAccountMapper;
 import net.highfi.bnpparibasfortis.bookstore.services.interfaces.IAccountService;
 import net.highfi.bnpparibasfortis.bookstore.services.interfaces.IAuthService;
@@ -55,5 +56,10 @@ public class AuthService implements IAuthService {
     String jwtToken = jwtService.generateToken(account);
 
     return accountMapper.toAccountLoginOut(account, jwtToken, jwtService.getExpirationTime());
+  }
+
+  @Override
+  public AccountFullOut toAccountFullOut(Account account) {
+    return accountMapper.toAccountFullOut(account);
   }
 }
